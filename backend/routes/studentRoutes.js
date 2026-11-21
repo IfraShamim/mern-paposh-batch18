@@ -1,5 +1,4 @@
 const express = require("express");
-
 const router = express.Router();
 
 const {
@@ -10,19 +9,12 @@ const {
   deleteStudent
 } = require("../controllers/studentController");
 
-// CREATE
-router.post("/", createStudent);
+const authMiddleware = require("../middleware/authMiddleware");
 
-// READ ALL
-router.get("/", getStudents);
-
-// READ SINGLE
-router.get("/:id", getStudentById);
-
-// UPDATE
-router.put("/:id", updateStudent);
-
-// DELETE
-router.delete("/:id", deleteStudent);
+router.post("/", authMiddleware, createStudent);
+router.get("/", authMiddleware, getStudents);
+router.get("/:id", authMiddleware, getStudentById);
+router.put("/:id", authMiddleware, updateStudent);
+router.delete("/:id", authMiddleware, deleteStudent);
 
 module.exports = router;

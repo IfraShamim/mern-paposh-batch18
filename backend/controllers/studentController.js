@@ -111,11 +111,3 @@ const deleteStudent = async (req, res) => {
 
   }
 };
-
-module.exports = {
-  createStudent,
-  getStudents,
-  getStudentById,
-  updateStudent,
-  deleteStudent
-};
